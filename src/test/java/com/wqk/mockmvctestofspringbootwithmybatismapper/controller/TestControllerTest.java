@@ -27,7 +27,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @RunWith(SpringRunner.class)
 //@MybatisTest
-@AutoConfigureMybatis
+//@AutoConfigureMybatis
 @WebMvcTest(TestController.class)
 public class TestControllerTest {
 
