@@ -1,0 +1,1 @@
+# mockmvctest-ofspringboot-withmybatismapper
