@@ -1,0 +1,14 @@
+sql sentences:
+
+CREATE TABLE `komect_data_product_abilityopen_cdnnation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `year` int(11) NOT NULL,
+  `month` int(11) NOT NULL,
+  `bandwidth_peak` double NOT NULL,
+  `bandwidth_mean` double NOT NULL,
+  `total_serve_provinces` double NOT NULL,
+  `total_domain_nums` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+INSERT INTO `kbis`.`komect_data_product_abilityopen_cdnnation`(`id`, `year`, `month`, `bandwidth_peak`, `bandwidth_mean`, `total_serve_provinces`, `total_domain_nums`) VALUES (1, 2018, 2, 42545, 545, 7857, 78);
+INSERT INTO `kbis`.`komect_data_product_abilityopen_cdnnation`(`id`, `year`, `month`, `bandwidth_peak`, `bandwidth_mean`, `total_serve_provinces`, `total_domain_nums`) VALUES (2, 2017, 2, 5745, 5757, 7857, 7857);
