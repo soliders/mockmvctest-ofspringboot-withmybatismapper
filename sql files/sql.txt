@@ -1,5 +1,8 @@
 sql sentences:
 
+CREATE DATABASE
+IF
+	NOT EXISTS testdb;
 CREATE TABLE `komect_data_product_abilityopen_cdnnation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `year` int(11) NOT NULL,

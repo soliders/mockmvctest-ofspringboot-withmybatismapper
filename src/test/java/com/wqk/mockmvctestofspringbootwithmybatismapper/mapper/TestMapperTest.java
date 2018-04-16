@@ -24,7 +24,7 @@ public class TestMapperTest {
   @Test
   public void selectCdnNationAllIndicatorsTest() throws JsonProcessingException {
     List<CdnNation> results = testMapper.selectCdnNationAllIndicators("2018","2");
-    System.out.println("==========Mapper Test 结果==========");
+    System.out.println("==========Mapper Test Result==========");
     ObjectMapper objectMapper = new ObjectMapper();
     System.out.println(results.size());
     System.out.println(objectMapper.writeValueAsString(results.get(0)));

@@ -1,30 +1,44 @@
 # mockmvctest-ofspringboot-withmybatismapper
 
-## this is a test demo for spring mock mvc.
+## this is a test demo of use spring mock mvc to integration test controller with real DB.
 
-* components of the project is below:
+* basic components of the project is below:
 
     >spring boot 2.0.0 Release
     
     >mybatis-spring-boot-starter 1.3.2
     
     >mybatis-spring-boot-starter-test 1.3.2
-    
-* 当前存在的问题 problems
-    >can not test Service layer
-    
-    >can not process integration test, because exception [Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required] this is mybatis could't find by spring boot test.
 
-    > spring mock mvc 的@WebMvcTest测试，无法自动注入mybatis的文件。
-    
-    >异常信息为：Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required  这就导致无法进行controller的集成测试。因为service层中会调用者mapper文件实现数据库操作。
- 
-    >service层测试暂时没有找到合适的实现方法   
+* explain
 
-
-*临时方案
->Mapper文件通过mybatis-spring-boot-starter-test进行单元测试，可以成功。代码中已经有示例
-
->controller中通过@AutoConfigureMybatis可以实现controller层调用service层的测试，但无法获取真实的数据库数据。
-
+   >@AutoConfigureMybatis
    
+   when you want to use spring mock mvc to integration test controller with real db, and you use mybatis to manipulate db, you shoud use this annotation to import basic mybatis test components.
+   The @MybatisTest annotation couldn't use together with @WebMvcTest, if you use together, the exception **java.lang.IllegalStateException: Configuration error: found multiple declarations of @BootstrapWith for test class** will be appear. 
+   
+   >@Import(TestServiceImpl.class)
+   
+   with this annotation you can use the real service which include real operations of the real db, and 
+   your integration test will be **JUnit <-> MockMvc <-> DispatcherServlet <-> Controller <-> Service <-> Mapper <-> DB**
+   
+   you wouldn't use the @MockBean of [SpringBoot offical recommended ](https://spring.io/guides/gs/testing-web/) if you use that annotation ,you integration test will be JUnit <-> MockMvc <-> DispatcherServlet <-> Controller ~~<-> Service <-> Mapper <-> DB~~
+   
+   >@WebMvcTest(TestController.class)
+    
+    With this annotation, Spring Boot only instantiation the specific controller on the web layer, not instantiating the whole context.
+    So you can improve you working efficiency, because you don't  need to wait long time when you test you code. If no integration test, when you want to test you code,you must running the whole project, if 
+    the project is big enough, once initiating will be take a long time to wait.  
+   
+* references
+
+[Spring Boot Reference Guide about MockBean](https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/htmlsingle/#boot-features-testing-spring-boot-applications-mocking-beans)
+
+[Spring Boot, Getting Started Testing the Web Layer](https://spring.io/guides/gs/testing-web/)
+
+[Exception which appeared in my testing, it already solved.](https://github.com/mybatis/spring-boot-starter/issues/227)
+
+
+  
+ * Special Thanks （特别感谢）：
+  https://github.com/kazuki43zoo
