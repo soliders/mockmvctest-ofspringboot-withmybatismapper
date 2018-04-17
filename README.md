@@ -29,7 +29,8 @@
    you can also don't use the @Import(xxx.class) in integration test, you can use the spring boot feature, the annotation
    @SpyBean. With @SpyBean, if you don't stubbing the specific method, it will use the real method of the really service. So, if your integration
    test include a real Service Class, you can you @SpyBean in field to include the real Service Class.just like this:
-   ```java
+
+```java
 @SpyBean
 private NameServiceImpl nameServiceImpl;
 ```
