@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -29,13 +30,18 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @RunWith(SpringRunner.class)
 @AutoConfigureMybatis
-@Import(TestServiceImpl.class)
+//@Import(TestServiceImpl.class)
 @WebMvcTest(TestController.class)
 //@MybatisTest
 public class TestControllerTest {
 
   @Autowired
   private MockMvc mockMvc;
+
+  //if you don't stubbing the specific method, it will use the real method.
+  @SpyBean
+  private TestServiceImpl testServiceImpl;
+
 
   @Test
   public void getCdnNationParams() throws Exception {
