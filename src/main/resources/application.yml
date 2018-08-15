@@ -1,0 +1,45 @@
+
+#mysql database config
+spring:
+  datasource:
+    #use alibaba druid as the database connection pool
+    type: com.alibaba.druid.pool.DruidDataSource
+    #change to yourself database connection url
+    url: jdbc:mysql://127.0.0.1:3306/kbis?useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    #chang to yourself database username and password
+    username: root
+    password: 123456
+    #config the database connection pool
+    druid:
+      #配置初始化大小、最小、最大r
+      initial-size: 1
+      min-idle: 1
+      max-active: 100
+      max-wait: 60000
+      #配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      pool-prepared-statements: false
+
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+
+server:
+#server port,change to yourself port
+#xxx.properties is preference, if no xxx.properties configuration file, the xxx.yml is enabled
+  servlet:
+    path:
+    context-path:
+  address:
+  ssl:
+    enabled: false
+    key-store:
+  port: 8080
+  tomcat:
+  #tomcat max thread numbers,default is 200
+    max-threads: 800
+    uri-encoding: UTF-8
+
+debug: true
+
